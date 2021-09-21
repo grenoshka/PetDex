@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/PetDex.iml" filepath="$PROJECT_DIR$/.idea/modules/PetDex.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PetDex.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PetDex.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/PetDex.data.iml" filepath="$PROJECT_DIR$/.idea/modules/data/PetDex.data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/PetDex.domain.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/PetDex.domain.iml" />
     </modules>
   </component>
 </project>

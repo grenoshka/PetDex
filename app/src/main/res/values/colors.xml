@@ -16,6 +16,7 @@
     <color name="neutral_08">#C7C7CC</color>
     <color name="neutral_09">#BDBDBD</color>
     <color name="neutral_10">#EDEDED</color>
+    <color name="neutral_11">#636363</color>
 
     <color name="status_bar">#C6C6C6</color>
 </resources>
