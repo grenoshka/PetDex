@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.petdex.R
 import com.example.petdex.databinding.FragmentAuthBinding
 
@@ -23,6 +24,10 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.btnSignUp.setOnClickListener {
+            val action = AuthFragmentDirections.actionAuthFragmentToSignUpFragment()
+            findNavController().navigate(action)
+        }
     }
 
     override fun onDestroyView() {
