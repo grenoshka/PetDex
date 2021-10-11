@@ -15,5 +15,10 @@
     <string name="reset_password_dialog_title">Почти готово!</string>
     <string name="reset_password_dialog_text">На ваш почтовый ящик отправлена инструкция по восстановлению пароля</string>
     <string name="cancel">Закрыть</string>
+    <string name="sign_in_error">Неверная почта или пароль</string>
+    <string name="sign_up_error">Ошибка создания аккаунта</string>
+    <string name="field_empty_error">Поле не может быть пустым</string>
+    <string name="email_invalid_error">Неверный формат адреса почты</string>
+    <string name="password_matching_error">Пароли не совпадают</string>
 
 </resources>

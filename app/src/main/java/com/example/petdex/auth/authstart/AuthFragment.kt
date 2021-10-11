@@ -1,4 +1,4 @@
-package com.example.petdex.auth
+package com.example.petdex.auth.authstart
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,7 @@ import com.example.petdex.R
 import com.example.petdex.databinding.FragmentAuthBinding
 
 class AuthFragment : Fragment(R.layout.fragment_auth) {
-    private var _binding:FragmentAuthBinding? = null
+    private var _binding: FragmentAuthBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -26,6 +26,10 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnSignUp.setOnClickListener {
             val action = AuthFragmentDirections.actionAuthFragmentToSignUpFragment()
+            findNavController().navigate(action)
+        }
+        binding.btnSignIn.setOnClickListener {
+            val action = AuthFragmentDirections.actionAuthFragmentToSignInFragment()
             findNavController().navigate(action)
         }
     }
