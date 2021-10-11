@@ -10,7 +10,9 @@ import androidx.fragment.app.viewModels
 import com.example.petdex.R
 import com.example.petdex.databinding.FragmentResetPasswordBinding
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ResetPasswordFragment : Fragment(R.layout.fragment_reset_password) {
     private var _binding: FragmentResetPasswordBinding? = null
     private val binding get() = _binding!!

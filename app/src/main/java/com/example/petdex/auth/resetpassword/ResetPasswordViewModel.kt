@@ -4,8 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.domain.base.SingleLiveEvent
 import com.example.domain.base.Utilities.isValidEmail
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ResetPasswordViewModel: ViewModel() {
+@HiltViewModel
+class ResetPasswordViewModel @Inject constructor(): ViewModel() {
     private val _isEmailEmptyError = SingleLiveEvent<Boolean>()
     val isEmailEmptyError: LiveData<Boolean> get() = _isEmailEmptyError
 
