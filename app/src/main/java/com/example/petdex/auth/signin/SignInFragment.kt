@@ -10,7 +10,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.petdex.R
 import com.example.petdex.databinding.FragmentSignInBinding
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding!!

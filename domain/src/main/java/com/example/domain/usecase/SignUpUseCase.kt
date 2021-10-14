@@ -2,10 +2,11 @@ package com.example.domain.usecase
 
 import com.example.domain.base.BaseUseCase
 import com.example.domain.repository.UserRepository
+import javax.inject.Inject
 
-class SignUpUseCase(private val userRepository: UserRepository) :
+class SignUpUseCase  @Inject constructor (private val userRepository: UserRepository) :
     BaseUseCase<Result<String>, SignUpParams> {
-    override fun invoke(params: SignUpParams): Result<String> {
+    override suspend fun invoke(params: SignUpParams): Result<String> {
         return userRepository.signUp(params.name, params.lastName, params.email, params.password)
     }
 }

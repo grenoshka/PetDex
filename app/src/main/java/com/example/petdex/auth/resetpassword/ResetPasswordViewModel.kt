@@ -2,10 +2,18 @@ package com.example.petdex.auth.resetpassword
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.domain.base.SingleLiveEvent
 import com.example.domain.base.Utilities.isValidEmail
+import com.example.domain.usecase.ResetPasswordParams
+import com.example.domain.usecase.ResetPasswordUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ResetPasswordViewModel: ViewModel() {
+@HiltViewModel
+class ResetPasswordViewModel @Inject constructor(private val resetPasswordUseCase: ResetPasswordUseCase) :
+    ViewModel() {
     private val _isEmailEmptyError = SingleLiveEvent<Boolean>()
     val isEmailEmptyError: LiveData<Boolean> get() = _isEmailEmptyError
 
@@ -18,7 +26,7 @@ class ResetPasswordViewModel: ViewModel() {
     private val _isResetPasswordSuccessful = SingleLiveEvent<String>()
     val isResetPasswordSuccessful: LiveData<String> get() = _isResetPasswordSuccessful
 
-    fun onResetPasswordClicked(email:String?){
+    fun onResetPasswordClicked(email: String?) {
         if (!email.isNullOrBlank() && email.isValidEmail())
             resetPassword(email)
         else {
@@ -27,8 +35,12 @@ class ResetPasswordViewModel: ViewModel() {
         }
     }
 
-    private fun resetPassword(email:String){
-        //todo восстановление пароля
-        _isResetPasswordError.value = "no reset idk"
+    private fun resetPassword(email: String) {
+        viewModelScope.launch {
+            if (resetPasswordUseCase.invoke(ResetPasswordParams(email)).isSuccess)
+                _isResetPasswordSuccessful.call()
+            else
+                _isResetPasswordError.call()
+        }
     }
 }

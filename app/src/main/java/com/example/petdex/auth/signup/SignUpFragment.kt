@@ -10,7 +10,9 @@ import com.example.petdex.R
 import com.example.petdex.databinding.FragmentSignInBinding
 import com.example.petdex.databinding.FragmentSignUpBinding
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!

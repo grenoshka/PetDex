@@ -2,10 +2,11 @@ package com.example.domain.usecase
 
 import com.example.domain.base.BaseUseCase
 import com.example.domain.repository.UserRepository
+import javax.inject.Inject
 
-class ResetPasswordUseCase(private val userRepository: UserRepository) :
+class ResetPasswordUseCase  @Inject constructor(private val userRepository: UserRepository) :
     BaseUseCase<Result<String>, ResetPasswordParams> {
-    override fun invoke(params: ResetPasswordParams): Result<String> {
+    override suspend fun invoke(params: ResetPasswordParams): Result<String> {
         return userRepository.resetPassword(params.email)
     }
 
