@@ -2,13 +2,17 @@ package com.example.petdex.auth.signup
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.domain.base.SingleLiveEvent
 import com.example.domain.base.Utilities.isValidEmail
+import com.example.domain.usecase.SignUpParams
+import com.example.domain.usecase.SignUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpViewModel @Inject constructor(): ViewModel() {
+class SignUpViewModel @Inject constructor(private val signUpUseCase: SignUpUseCase): ViewModel() {
     private val _isPasswordMatchingError = SingleLiveEvent<Boolean>()
     val isPasswordMatchingError: LiveData<Boolean> get() = _isPasswordMatchingError
 
@@ -52,7 +56,7 @@ class SignUpViewModel @Inject constructor(): ViewModel() {
             && !repeatedPassword.isNullOrBlank()
             && password == repeatedPassword
         )
-            signUp(name, lastName, email, password, repeatedPassword)
+            signUp(name, lastName, email, password)
         else {
             if (name.isNullOrBlank()) _isNameEmptyError.call()
             if (lastName.isNullOrBlank()) _isLastNameEmptyError.call()
@@ -68,10 +72,14 @@ class SignUpViewModel @Inject constructor(): ViewModel() {
         name: String,
         lastName: String,
         email: String,
-        password: String,
-        repeatedPassword: String
+        password: String
     ) {
-        //todo создание аккаунта
-        _isSignUpError.value = "u suck"
+        viewModelScope.launch {
+            if (signUpUseCase.invoke(SignUpParams(name, lastName, email, password)).isSuccess){
+                _isSignUpSuccessful.call()
+            }
+            else
+                _isSignUpError.call()
+        }
     }
 }

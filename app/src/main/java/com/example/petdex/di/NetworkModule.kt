@@ -2,6 +2,7 @@ package com.example.petdex.di
 
 import com.example.data.network.ApiClient
 import com.example.data.network.FirebaseApiClient
+import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,5 +14,5 @@ import javax.inject.Singleton
 class NetworkModule {
     @Provides
     @Singleton
-    fun apiClient(): ApiClient = FirebaseApiClient()
+    fun apiClient(): ApiClient = FirebaseApiClient(FirebaseAuth.getInstance())
 }
